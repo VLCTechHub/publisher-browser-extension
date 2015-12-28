@@ -10,10 +10,7 @@
    },
 
   "page_action": {
-    "default_icon": {
-      "19": "icon.png",
-      "38": "icon.png"
-    }, 
+    "default_icon": "img/icon.png",
     "default_popup": "popup.html",
     "default_title": "Publicar en VLCTechHub"
   },

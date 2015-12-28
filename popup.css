@@ -1,0 +1,36 @@
+body {
+  min-width: 500px;
+  font-size: 100%;
+  padding: 1em 1em 0.5em 1em; 
+  background-color: #ececec;
+}
+
+#description {
+  height: 280px;
+}
+
+form input, form textarea {
+  background-color: whitesmoke;
+}
+
+aside {
+  background: #1f8dd6;
+  padding: 0.3em 1em;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 1.2em;
+}
+aside a {
+  color: #fff;
+}
+.pure-button-primary {
+  background-color: #6cad05;
+}
+header img {
+  width: 20%;
+  margin-bottom: 0.5em;
+}
+
+.content {
+  margin-top: 2em;
+}
