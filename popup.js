@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+window.onload = function() {
   fetchEventDetails().then(showDetails, showWarning);
-});
+}
 
 function fetchEventDetails(){
   var promise = new Promise(function(resolve, reject){
