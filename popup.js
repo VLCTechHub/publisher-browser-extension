@@ -6,10 +6,10 @@ function fetchEventDetails(){
   var promise = new Promise(function(resolve, reject){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {fetch:true}, function(response) {
-        if(response.isFromValencia == true){
-          resolve(response);
+        if(response.success == true){
+          resolve(response.event);
         } else {
-          reject(response);
+          reject(response.event);
         }
       });
     });

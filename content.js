@@ -1,7 +1,14 @@
-function isFromValencia() {
-  var locality = document.querySelector('span.locality');
+function canBePublished() {
   var isEventDetailPage = document.querySelector('#eventdets') !== null;
-  return isEventDetailPage && locality.innerText === 'Valencia'
+  return isEventDetailPage && isFromValencia() && isOpen();
+}
+
+function isFromValencia(){
+  return document.querySelector('span.locality').innerText === 'Valencia';
+}
+
+function isOpen(){
+  return document.querySelector('#eventdets #event-when-display time') !== null;
 }
 
 function getTitle(){
@@ -16,21 +23,23 @@ function getDateTime() {
   return document.querySelector('#eventdets #event-when-display time').getAttribute('datetime');
 }
 
-function getEventDetails() {
-  var details = { 'isFromValencia': isFromValencia() }
-  if (!details['isFromValencia'] ) { return details; }
+function getResponse() {
+  var response = { 'success': canBePublished() }
+  if (!response['success'] ) { return response; }
 
-  details['title'] = getTitle();
-  details['description'] = getDescription();
-  details['datetime'] = getDateTime();
-  return details;
+  response['event'] = {
+    'title': getTitle(),
+    'description': getDescription(),
+    'datetime': getDateTime()
+  }
+  return response;
 }
 
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.fetch == true) {
-      sendResponse(getEventDetails());
+      sendResponse(getResponse());
     }
   }
 );
