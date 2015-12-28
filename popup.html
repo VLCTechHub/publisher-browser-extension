@@ -1,22 +1,37 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>VLCTechHub Publisher</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
      <style>
      body {
       min-width: 500px;
-      font-size: 100%; 
+      font-size: 100%;
+      padding: 1em; 
      }
 
      #description {
       height: 300px;
      }
+
+     aside {
+      background: #1f8dd6;
+      padding: 0.3em 1em;
+      border-radius: 3px;
+      color: #fff;
+      font-size: 1.2em;
+     }
+     aside a {
+      color: #fff;
+     }
     </style>
     <script src="popup.js"></script>
   </head>
   <body>
+    <div class="content" style="display:none">
+      <aside>No se ha encontrado ningun evento en Valencia en esta página. Si quieres darlo de alta manualmente visita <a href="http://vlctechhub.org/#/new">vlctechhub.org</a>.</aside>
+    </div>
     <form class="pure-form pure-form-stacked">
      <fieldset class="pure-group">
         <input type="text" id="title" class="pure-input-1" placeholder="Titulo">

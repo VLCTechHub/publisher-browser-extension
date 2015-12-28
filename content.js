@@ -17,17 +17,20 @@ function getDateTime() {
 }
 
 function getEventDetails() {
-  return {
-    'isFromValencia': true,
-    'title': getTitle(),
-    'description': getDescription(),
-    'datetime': getDateTime()
+  var details = { 'isFromValencia': isFromValencia() }
+  if (!details['isFromValencia'] ) { return details; }
+
+  details['title'] = getTitle();
+  details['description'] = getDescription();
+  details['datetime'] = getDateTime();
+  return details;
+}
+
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.fetch == true) {
+      sendResponse(getEventDetails());
+    }
   }
-}
-
-
-if(!isFromValencia()){
-  chrome.runtime.sendMessage({isFromValencia: false});
-} else {
-  chrome.runtime.sendMessage(getEventDetails());
-}
+);
