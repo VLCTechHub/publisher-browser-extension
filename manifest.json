@@ -18,6 +18,14 @@
     "default_title": "Publicar en VLCTechHub"
   },
   "permissions": [
-    "declarativeContent"
+    "declarativeContent", "activeTab"
+  ],
+  "content_scripts":
+  [
+    {
+      "matches": ["*://*.meetup.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
   ]
 }

@@ -7,6 +7,11 @@
      <style>
      body {
       min-width: 500px;
+      font-size: 100%; 
+     }
+
+     #description {
+      height: 300px;
      }
     </style>
     <script src="popup.js"></script>
@@ -19,12 +24,8 @@
         <input type="text" class="pure-input-1" id="link" placeholder="Link">
       </fieldset>
       <fieldset class="pure-group">
-        <input type="date" class="pure-input-1" placeholder="Fecha dd/mm/yy">
-        <input type="time" class="pure-input-1" placeholder="Hora hh:mm">
-      </fieldset>
-      <fieldset class="pure-group">
-        
-        <input type="text" class="pure-input-1-3" id="hashtag" placeholder="#hashtag o @mencion">
+        <input type="datetime-local" class="pure-input-1" id="datetime" placeholder="Fecha y hora">
+        <input type="text" class="pure-input-1" id="hashtag" placeholder="#hashtag o @mencion">
       </fieldset>
       <button type="submit" class="pure-button pure-button-primary pure-input-1">Publicar</button>
     </form>
