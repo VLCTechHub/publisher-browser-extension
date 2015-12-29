@@ -29,7 +29,7 @@ function publish(event) {
     title: document.querySelector('#title').value,
     description: document.querySelector('#description').value,
     link: document.querySelector('#link').value,
-    date: document.querySelector('#datetime').value,
+    date: moment.tz(document.querySelector('#datetime').value,"Europe/Madrid").toISOString(),
     hashtag: document.querySelector('#hashtag').value
   }
 
