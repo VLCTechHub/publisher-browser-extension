@@ -2,6 +2,10 @@ window.onload = function() {
   fetchEventDetails().then(showDetails, showWarning);
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelector('form').addEventListener('submit', publish);
+});
+
 function fetchEventDetails(){
   var promise = new Promise(function(resolve, reject){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -16,6 +20,22 @@ function fetchEventDetails(){
   });
 
   return promise; 
+}
+
+function publish(event) {
+  event.preventDefault();
+  
+  var eventDetail = {
+    title: document.querySelector('#title').value,
+    description: document.querySelector('#description').value,
+    link: document.querySelector('#link').value,
+    date: document.querySelector('#datetime').value,
+    hashtag: document.querySelector('#hashtag').value
+  }
+
+  console.log('publicando...', eventDetail);
+  
+  // https://davidwalsh.name/fetch
 }
 
 function showDetails(eventDetails) {
