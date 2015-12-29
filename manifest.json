@@ -15,7 +15,7 @@
     "default_title": "Publicar en VLCTechHub"
   },
   "permissions": [
-    "declarativeContent", "activeTab"
+    "declarativeContent", "activeTab", "http://vlctechhub-api.herokuapp.com/"
   ],
   "content_scripts":
   [

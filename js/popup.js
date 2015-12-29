@@ -1,5 +1,5 @@
 window.onload = function() {
-  fetchEventDetails().then(showDetails, showWarning);
+  fetchEventDetails().then(showDetails, showNotFoundEventMessage);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,6 +24,10 @@ function fetchEventDetails(){
 
 function publish(event) {
   event.preventDefault();
+
+  var button = document.querySelector('form button');
+  button.innerText = 'Publicando...';
+  button.disabled = true;
   
   var eventDetail = {
     title: document.querySelector('#title').value,
@@ -33,13 +37,18 @@ function publish(event) {
     hashtag: document.querySelector('#hashtag').value
   }
 
-  console.log('publicando...', eventDetail);
-  
   // https://davidwalsh.name/fetch
+  fetch('http://vlctechhub-api.herokuapp.com/v0/events/new', {
+    method: 'post',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify(eventDetail)
+  }).then(showWasPublishedMessage).catch(showNotPublishedMessage);
 }
 
 function showDetails(eventDetails) {
-  hideWarning();
+  showForm();
   fillForm(eventDetails);
 }
 
@@ -53,12 +62,41 @@ function fillForm(eventDetails) {
   });
 }
 
-function hideWarning() {
-  document.querySelector('form').style.display = 'inline';
+function hideAll() {
+  document.querySelector('form').style.display = 'none';
   document.querySelector('.content').style.display = 'none';
+  document.querySelector('.no-event').style.display = 'none';
+  document.querySelector('.published').style.display = 'none';
+  document.querySelector('.not-published').style.display = 'none';
 }
 
-function showWarning() {
-  document.querySelector('form').style.display = 'none';
-  document.querySelector('.content').style.display = 'inline';
+function showForm() {
+  hideAll();
+  document.querySelector('form').style.display = 'block';
+}
+
+function showNotFoundEventMessage() {
+  hideAll();
+  document.querySelector('.content').style.display = 'block';
+  document.querySelector('.no-event').style.display = 'block';
+}
+
+function showPublishedMessage(){
+  hideAll();
+  document.querySelector('.content').style.display = 'block';
+  document.querySelector('.published').style.display = 'block';
+}
+
+function showNotPublishedMessage(){
+  hideAll();
+  document.querySelector('.content').style.display = 'block';
+  document.querySelector('.not-published').style.display = 'block';
+}
+
+function showWasPublishedMessage(response) {
+  if(response.ok) {
+    showPublishedMessage();
+  } else {
+    showNotPublishedMessage();
+  }
 }

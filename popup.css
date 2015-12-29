@@ -13,16 +13,29 @@ form input, form textarea {
   background-color: whitesmoke;
 }
 
-aside {
-  background: #1f8dd6;
+.content aside {
   padding: 0.3em 1em;
   border-radius: 3px;
-  color: #fff;
   font-size: 1.2em;
-}
-aside a {
   color: #fff;
 }
+
+.content aside a {
+  color: #fff;
+}
+
+.content aside.info {
+  background-color: #4d85d1;
+}
+
+.content aside.success {
+  background-color: #5aba59;
+}
+
+.content aside.error {
+  background-color: #df2d4f;
+}
+
 button.pure-button-primary {
   background-color: #6cad05;
 }
