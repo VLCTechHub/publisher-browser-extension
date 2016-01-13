@@ -1,0 +1,1 @@
+VLCTechHub Publisher Chrome Addon for Meetup pages
