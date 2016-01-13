@@ -1,0 +1,36 @@
+{
+  "name": "vlctechhub-chrome-addon",
+  "version": "1.0.0",
+  "description": "Addon to publish events in VLCTechHub from different pages",
+  "main": "src/popup.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/phantomjs test/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VLCTechHub/chrome-addon.git"
+  },
+  "keywords": [
+    "vlctechhub",
+    "chrome-addon",
+    "meetup",
+    "publish",
+    "events"
+  ],
+  "author": "hell03610",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VLCTechHub/chrome-addon/issues"
+  },
+  "homepage": "https://github.com/VLCTechHub/chrome-addon#readme",
+  "devDependencies": {
+    "sinon-chrome": "^0.2.0",
+    "mocha": "^1.21.4",
+    "chai": "^1.9.2",
+    "phantomjs": "^1.9.12",
+    "sinon": "^1.11.1"
+  }
+}
