@@ -41,12 +41,12 @@ var MeetupScrapper = function() {
   }
 }
 
-
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
+  function(request, sender, next) {
+    console.log('listened')
     if (request.fetch == true) {
       var scrapper = new MeetupScrapper();
-      sendResponse(scrapper.scrap());
+      next(scrapper.scrap());
     }
   }
 );
