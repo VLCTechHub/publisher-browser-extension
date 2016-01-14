@@ -1,4 +1,7 @@
-# VLCTechHub Publisher Chrome Addon for Meetup pages
+# VLCTechHub Chrome Extension
+
+VLCTechHun Chrome extension to publish events from the browser.
+Currently, only events from Meetup pages are supported.
 
 ## How to use it
 
