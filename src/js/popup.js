@@ -9,10 +9,7 @@ var EventFiller = function(){
     document.querySelector('#title').value = eventDetails.title;
     document.querySelector('#description').value = eventDetails.description;
     document.querySelector('#datetime').value = eventDetails.datetime.substring(0,16);
-   
-    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
-      document.querySelector('#link').value = tabs[0].url
-    });
+    document.querySelector('#link').value = eventDetails.url;
   }
 
   function hideAll() {
@@ -98,32 +95,40 @@ var EventPublisher = function() {
   }
 }
 
-
 var EventFetcher = function() {
-  function sendMessage(message, next) {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, message, next);
+  function sendMessage(message) {
+    var promise = new Promise(function(resolve, reject){
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, message, function(response){
+          var next = response.success ? resolve : reject;
+          next(response.event);     
+        });
+      });
     });
+    return promise;
+  }
+
+  function buildMessage() {
+    var promise = new Promise(function(resolve, reject){
+      chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
+        resolve({'fetch': true, 'url': tabs[0].url});
+      })
+    });
+    return promise;
   }
 
   return {
     fetch: function (){
-      var promise = new Promise(function(resolve, reject){
-        sendMessage({fetch:true}, function(response) {
-          var next = response.success ? resolve : reject;
-          next(response.event);
-        });
-      });
-      return promise;
+      return buildMessage().then(sendMessage)
     }
   }
 }
 
 window.onload = function() {
-  var fetcher = new EventFetcher();
-  var filler = new EventFiller();
   var publisher = new EventPublisher();
 
-  fetcher.fetch().then(filler.showDetails, filler.showNotFoundEventMessage);
+  var fetcher = new EventFetcher();
+  var filler = new EventFiller();
+  fetcher.fetch().then(filler.showDetails, filler.showNotFoundEventMessage);  
 }
 

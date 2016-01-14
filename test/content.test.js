@@ -1,13 +1,15 @@
 describe('MeetupScrapper', function(){
   it('reads information of a future event in Valencia', function(done) {  
     withMeetupFixture(function(){
-      var scrapper = new MeetupScrapper();
+      var url = 'some url';
+      var scrapper = new MeetupScrapper({'url': url});
       var result = scrapper.scrap();
       
       assert.equal(result.success,true);
       assert.equal(result.event.title,'Title goes here');
       assert.equal(result.event.description,'Description goes here');
       assert.equal(result.event.datetime,'ISO Datetime goes here');
+      assert.equal(result.event.url,'some url');
     }, done);
   });
 
@@ -43,8 +45,6 @@ describe('MeetupScrapper', function(){
   });
 });
 
-
-
 describe('Content', function(){
   describe('on fetch message', function(){
     it('scraps the meetup page', function(done){
@@ -52,6 +52,7 @@ describe('Content', function(){
         var sender = sinon.spy();
         var sendResponse = sinon.spy();
 
+        chrome.tabs.query.yields([{'url': 'some url'}]);
         chrome.runtime.onMessage.trigger({fetch:true}, sender, sendResponse);
         
         assert(sendResponse.calledOnce);
