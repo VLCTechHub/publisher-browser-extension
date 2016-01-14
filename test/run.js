@@ -14,6 +14,7 @@ phantom.injectJs(node_modules + 'sinon/pkg/sinon.js');
 mocha.setup({ui: 'bdd', reporter: 'spec'});
 phantom.injectJs('beforeeach.js');
 phantom.injectJs('content.test.js');
+phantom.injectJs('popup.test.js');
 
 var assert = chai.assert;
 //phantom.injectJs('background.test.js');
