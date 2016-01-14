@@ -81,7 +81,7 @@ var EventPublisher = function() {
     }
 
     // https://davidwalsh.name/fetch
-    fetch('http://vlctechhub-api.herokuapp.com/v0/events/new', {
+    window.fetch('http://vlctechhub-api.herokuapp.com/v0/events/new', {
       method: 'post',
       headers: new Headers({
         'Content-Type': 'application/json'

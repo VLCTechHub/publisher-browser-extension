@@ -14,6 +14,7 @@ describe('EventFiller', function(){
       assert.equal(document.querySelector('#title').value, 'a title');
       assert.equal(document.querySelector('#description').value, 'a description');
       assert.equal(document.querySelector('#link').value, 'an url');
+      assert.equal(document.querySelector('#datetime').value, '2001-01-01T12:00');
     }, done);
   });
 
@@ -27,10 +28,63 @@ describe('EventFiller', function(){
   });
 });
 
+describe('EventPulisher', function(){
+  it('sends the event to vlctechhub api', function(done){
+    withPopupFixture(function(){
+     //show event in dom
+      document.querySelector('#title').value = 'a title';
+      document.querySelector('#description').value = 'a description';
+      document.querySelector('#link').value = 'an url';
+      document.querySelector('#hashtag').value = 'a hashtag';
+      document.querySelector('#datetime').value = '2001-01-01T12:00';
+
+      //mock momentjs
+      moment = {
+        tz: function(value){
+          return {
+            toISOString: function(){
+              return value;
+            }
+          }
+        }
+      }
+
+      //mock fetch and its promises
+      window.fetch = function(){
+        return {
+          then: function(next) { 
+            next({ ok: true}); 
+            return { catch: function(next) {next()}} }, 
+        }
+      }
+      window.Headers = function() {}
+
+      //spy on fetch
+      var spy = sinon.spy(window, 'fetch');
+
+      var publisher = new EventPublisher();
+      publisher.publish({ preventDefault: function(){}});
+
+      assert(spy.calledOnce);
+      var url = spy.firstCall.args[0];
+      var data = spy.firstCall.args[1];
+      var body = JSON.parse(data.body);
+      assert.equal(url, 'http://vlctechhub-api.herokuapp.com/v0/events/new');
+      assert.equal(body.title, 'a title');
+      assert.equal(body.description, 'a description');
+      assert.equal(body.link, 'an url');
+      assert.equal(body.date, '2001-01-01T12:00');
+      assert.equal(body.hashtag, 'a hashtag');
+    }, done);
+  });
+})
+
 
 var withPopupFixture = function(next, done){
   var FILENAME = 'test/fixtures/popup.html';
   page.open(FILENAME, function() {
+    page.injectJs('js/vendor/moment.min.js');
+    page.injectJs('js/vendor/moment-timezone-with-data.min.js');
     page.injectJs('src/js/popup.js');
     page.evaluate(next);
     done();
