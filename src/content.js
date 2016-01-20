@@ -9,7 +9,7 @@ var MeetupScrapper = function(options) {
 
   function isFromValencia(){
     var isGroupInValencia = document.querySelector('span.locality').innerText === 'Valencia';
-    var isEventInValencia = document.querySelector('.event-where-address span').innerText === 'Valencia';
+    var isEventInValencia = document.querySelector('.event-where-address span:first-of-type').innerText === 'Valencia';
     return isGroupInValencia || isEventInValencia;
   }
 
