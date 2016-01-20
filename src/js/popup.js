@@ -10,6 +10,7 @@ var EventFiller = function(){
     document.querySelector('#description').value = eventDetails.description;
     document.querySelector('#datetime').value = eventDetails.datetime.substring(0,16);
     document.querySelector('#link').value = eventDetails.url;
+    document.querySelector('#hashtag').value = (eventDetails.hashtag || '');
   }
 
   function hideAll() {

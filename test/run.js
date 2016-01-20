@@ -13,14 +13,26 @@ phantom.injectJs(node_modules + 'sinon/pkg/sinon.js');
 
 mocha.setup({ui: 'bdd', reporter: 'spec'});
 phantom.injectJs('beforeeach.js');
+phantom.injectJs('meetupscraper.test.js');
+phantom.injectJs('eventbritescraper.test.js');
 phantom.injectJs('content.test.js');
 phantom.injectJs('popup.test.js');
 
 var assert = chai.assert;
-//phantom.injectJs('background.test.js');
-//phantom.injectJs('popup.test.js');
-mocha.run(function(failures) {
- 
+var meetupFixture = 'test/fixtures/meetup.html';
+var eventbriteFixture = 'test/fixtures/eventbrite.html';
+  
+var withFixture = function(fixture, next, done){
+  page.open(fixture, function() {
+    page.injectJs('src/js/scrapers/meetupscraper.js');
+    page.injectJs('src/js/scrapers/eventbritescraper.js');
+    page.injectJs('src/js/content.js');
+    page.evaluate(next);
+    done();
+  });
+}
+
+mocha.run(function(failures) { 
   // setTimeout is needed to supress "Unsafe JavaScript attempt to access..."
   // see https://github.com/ariya/phantomjs/issues/12697
   setTimeout(function() {
