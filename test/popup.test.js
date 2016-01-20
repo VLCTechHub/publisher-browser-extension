@@ -28,7 +28,7 @@ describe('EventFiller', function(){
   });
 });
 
-describe('EventPulisher', function(){
+describe('EventPublisher', function(){
   it('sends the event to vlctechhub api', function(done){
     withPopupFixture(function(){
      //show event in dom

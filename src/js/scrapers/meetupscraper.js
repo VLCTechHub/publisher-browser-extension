@@ -1,4 +1,4 @@
-var MeetupScrapper = function(options) {
+var MeetupScraper = function(options) {
   options = options || {};
   var url = options.url;
 
@@ -46,13 +46,3 @@ var MeetupScrapper = function(options) {
     }
   }
 }
-
-
-chrome.runtime.onMessage.addListener(
-  function(request, sender, next) {
-    if (request.fetch == true) {
-      var scrapper = new MeetupScrapper({'url': request.url});
-      next(scrapper.scrap());
-    }
-  }
-);
