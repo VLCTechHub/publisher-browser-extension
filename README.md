@@ -6,7 +6,7 @@ Sites supported:
  - Event detail page from www.meetup.com
  - Event detail page from www.eventbrite.es (old style) 
 
-Events must have a future date and be hold in Valencia region.
+Events must have a future date and be held in Valencia region.
 
 ## How to use it
 
