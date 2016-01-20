@@ -8,7 +8,9 @@ var MeetupScrapper = function(options) {
   }
 
   function isFromValencia(){
-    return document.querySelector('span.locality').innerText === 'Valencia';
+    var isGroupInValencia = document.querySelector('span.locality').innerText === 'Valencia';
+    var isEventInValencia = document.querySelector('.event-where-address span:first-of-type').innerText === 'Valencia';
+    return isGroupInValencia || isEventInValencia;
   }
 
   function hasADate(){
@@ -40,7 +42,7 @@ var MeetupScrapper = function(options) {
         'datetime': getDateTime(),
         'url': url
       }
-      return response;      
+      return response;
     }
   }
 }
@@ -50,7 +52,7 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, next) {
     if (request.fetch == true) {
       var scrapper = new MeetupScrapper({'url': request.url});
-      next(scrapper.scrap());  
+      next(scrapper.scrap());
     }
   }
 );

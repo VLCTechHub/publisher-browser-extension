@@ -1,10 +1,10 @@
 describe('MeetupScrapper', function(){
-  it('reads information of a future event in Valencia', function(done) {  
+  it('reads information of a future event in Valencia', function(done) {
     withMeetupFixture(function(){
       var url = 'some url';
       var scrapper = new MeetupScrapper({'url': url});
       var result = scrapper.scrap();
-      
+
       assert.equal(result.success,true);
       assert.equal(result.event.title,'Title goes here');
       assert.equal(result.event.description,'Description goes here');
@@ -17,12 +17,13 @@ describe('MeetupScrapper', function(){
     withMeetupFixture(function() {
       var changeLocality = function(){
         document.querySelector('span.locality').innerText = 'Alicante';
+        document.querySelector('.event-where-address span:first-of-type').innerText = 'Alicante';
       }
       changeLocality();
-      
+
       var scrapper = new MeetupScrapper();
       var result = scrapper.scrap();
-      
+
       assert.equal(result.success,false);
       assert.equal(result.event, undefined);
     }, done);
@@ -38,7 +39,7 @@ describe('MeetupScrapper', function(){
 
       var scrapper = new MeetupScrapper();
       var result = scrapper.scrap();
-      
+
       assert.equal(result.success, false);
       assert.equal(result.event, undefined);
     }, done);
@@ -54,7 +55,7 @@ describe('Content', function(){
 
         chrome.tabs.query.yields([{'url': 'some url'}]);
         chrome.runtime.onMessage.trigger({fetch:true}, sender, sendResponse);
-        
+
         assert(sendResponse.calledOnce);
         var response = sendResponse.firstCall.args[0];
         assert.equal(response.success, true);
@@ -70,5 +71,5 @@ var withMeetupFixture = function(next, done){
     page.injectJs('src/content.js');
     page.evaluate(next);
     done();
-  });  
+  });
 }
