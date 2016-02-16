@@ -4,7 +4,8 @@ VLCTechHub Chrome extension to publish events in VLCTechHub with details read fr
 
 Sites supported:
  - Event detail page from www.meetup.com
- - Event detail page from www.eventbrite.es (old style) 
+ - Event detail page from www.eventbrite.es (old style)
+ - Event in front page from valenciarb.org
 
 Events must have a future date and be held in Valencia region.
 
@@ -18,7 +19,7 @@ To install the dev version:
  - `npm install`
  - open chrome -> settings -> extensions -> enable dev mode
  - add an extension, select `src` folder from this repo
- - visit a meetup event page with a future event in Valencia 
+ - visit a meetup event page with a future event in Valencia
 
 
 To run the test run `npm test` on the project folder.

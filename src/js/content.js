@@ -2,6 +2,8 @@ var createScraper = function(url) {
   var Scraper;
   if(url.indexOf('http://www.meetup.com/') >= 0) {
     Scraper = MeetupScraper;
+  } else if (url.indexOf('http://valenciarb.org') >= 0) {
+    Scraper = ValenciaRbScraper;
   } else {
     Scraper = EventbriteScraper;
   }

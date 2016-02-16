@@ -37,7 +37,7 @@ var EventFiller = function(){
 var EventPublisher = function() {
 
   document.querySelector('form').addEventListener('submit', publish);
-  
+
   function showPublishedMessage(){
     hideAll();
     document.querySelector('.content').style.display = 'block';
@@ -57,7 +57,7 @@ var EventPublisher = function() {
       showNotPublishedMessage();
     }
   }
-    
+
   function hideAll() {
     document.querySelector('form').style.display = 'none';
     document.querySelector('.content').style.display = 'none';
@@ -68,11 +68,11 @@ var EventPublisher = function() {
 
   function publish(event) {
     event.preventDefault();
-  
+
     var button = document.querySelector('form button');
     button.innerText = 'Publicando...';
     button.disabled = true;
-    
+
     var eventDetail = {
       title: document.querySelector('#title').value,
       description: document.querySelector('#description').value,
@@ -102,7 +102,7 @@ var EventFetcher = function() {
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, message, function(response){
           var next = response.success ? resolve : reject;
-          next(response.event);     
+          next(response.event);
         });
       });
     });
@@ -130,6 +130,6 @@ window.onload = function() {
 
   var fetcher = new EventFetcher();
   var filler = new EventFiller();
-  fetcher.fetch().then(filler.showDetails, filler.showNotFoundEventMessage);  
+  fetcher.fetch().then(filler.showDetails, filler.showNotFoundEventMessage);
 }
 

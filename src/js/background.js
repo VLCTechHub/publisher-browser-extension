@@ -7,6 +7,10 @@ var showExtensionRule = {
     new chrome.declarativeContent.PageStateMatcher({
       pageUrl: { hostEquals: 'www.eventbrite.es' },
       css: ["#page_eventview"]
+    }),
+      new chrome.declarativeContent.PageStateMatcher({
+      pageUrl: { hostEquals: 'valenciarb.org' },
+      css: [".eyelet"]
     })
   ],
   actions: [ new chrome.declarativeContent.ShowPageAction() ]
