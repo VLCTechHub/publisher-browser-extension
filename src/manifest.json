@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "VLCTechHub Publisher Addon",
   "description": "Publish events in VLCTechHub directly from Chrome",
-  "version": "1.1",
+  "version": "1.2",
 
   "background" : {
      "scripts": ["js/background.js"],
@@ -17,7 +17,7 @@
   "permissions": [
     "declarativeContent", "activeTab", "http://vlctechhub-api.herokuapp.com/"
   ],
-  "icons": { 
+  "icons": {
     "16": "img/icon16.png",
     "48": "img/icon48.png",
     "128": "img/icon128.png"
@@ -25,8 +25,15 @@
   "content_scripts":
   [
     {
-      "matches": ["http://www.meetup.com/*", "http://www.eventbrite.es/e/*"],
-      "js": ["js/scrapers/meetupscraper.js", "js/scrapers/eventbritescraper.js", "js/content.js"],
+      "matches": ["http://www.meetup.com/*",
+                  "http://valenciarb.org/",
+                  "http://www.eventbrite.es/e/*"],
+
+      "js": [ "js/scrapers/meetupscraper.js",
+              "js/scrapers/eventbritescraper.js",
+              "js/scrapers/valenciarbscraper.js",
+              "js/content.js"],
+
       "run_at": "document_end"
     }
   ]
