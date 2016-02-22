@@ -7,7 +7,7 @@ describe('Decharlas', function(){
 
       assert.equal(result.success,true);
       assert.equal(result.event.title,'Cómo proteger mi idea de negocio');
-      assert.equal(result.event.description.substring(0, 23),'Jornada organizada por:');
+      assert.equal(result.event.description.substring(0, 21),'Abordaremos distintos');
       assert.equal(result.event.datetime,'04/02/2016');
       assert.equal(result.event.hashtag,'@decharlas');
       assert.equal(result.event.url,'some url');
