@@ -52,9 +52,9 @@ describe('EventPublisher', function(){
       //mock fetch and its promises
       window.fetch = function(){
         return {
-          then: function(next) { 
-            next({ ok: true}); 
-            return { catch: function(next) {next()}} }, 
+          then: function(next) {
+            next({ ok: true});
+            return { catch: function(next) {next()}} },
         }
       }
       window.Headers = function() {}
@@ -69,12 +69,13 @@ describe('EventPublisher', function(){
       var url = spy.firstCall.args[0];
       var data = spy.firstCall.args[1];
       var body = JSON.parse(data.body);
-      assert.equal(url, 'http://vlctechhub-api.herokuapp.com/v0/events/new');
-      assert.equal(body.title, 'a title');
-      assert.equal(body.description, 'a description');
-      assert.equal(body.link, 'an url');
-      assert.equal(body.date, '2001-01-01T12:00');
-      assert.equal(body.hashtag, 'a hashtag');
+      var event = body.event;
+      assert.equal(url, 'https://vlctechhub-api.herokuapp.com/v1/events');
+      assert.equal(event.title, 'a title');
+      assert.equal(event.description, 'a description');
+      assert.equal(event.link, 'an url');
+      assert.equal(event.date, '2001-01-01T12:00');
+      assert.equal(event.hashtag, 'a hashtag');
     }, done);
   });
 })
@@ -88,5 +89,5 @@ var withPopupFixture = function(next, done){
     page.injectJs('src/js/popup.js');
     page.evaluate(next);
     done();
-  });  
+  });
 }
