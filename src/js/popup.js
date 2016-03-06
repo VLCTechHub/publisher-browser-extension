@@ -82,12 +82,12 @@ var EventPublisher = function() {
     }
 
     // https://davidwalsh.name/fetch
-    window.fetch('http://vlctechhub-api.herokuapp.com/v0/events/new', {
+    window.fetch('https://vlctechhub-api.herokuapp.com/v1/events', {
       method: 'post',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      body: JSON.stringify(eventDetail)
+      body: JSON.stringify({ event: eventDetail})
     }).then(showWasPublishedMessage).catch(showNotPublishedMessage);
   }
 
