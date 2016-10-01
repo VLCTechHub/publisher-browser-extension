@@ -16,6 +16,7 @@ phantom.injectJs('beforeeach.js');
 phantom.injectJs('meetupscraper.test.js');
 phantom.injectJs('eventbritescraper.test.js');
 phantom.injectJs('valenciarbscraper.test.js');
+phantom.injectJs('decharlas.test.js');
 phantom.injectJs('content.test.js');
 phantom.injectJs('popup.test.js');
 
@@ -23,12 +24,14 @@ var assert = chai.assert;
 var meetupFixture = 'test/fixtures/meetup.html';
 var eventbriteFixture = 'test/fixtures/eventbrite.html';
 var valenciarbFixture = 'test/fixtures/valenciarb.html';
+var decharlasFixture = 'test/fixtures/decharlas.html';
 
 var withFixture = function(fixture, next, done){
   page.open(fixture, function() {
     page.injectJs('src/js/scrapers/meetupscraper.js');
     page.injectJs('src/js/scrapers/eventbritescraper.js');
     page.injectJs('src/js/scrapers/valenciarbscraper.js');
+    page.injectJs('src/js/scrapers/decharlasscraper.js');
     page.injectJs('src/js/content.js');
     page.evaluate(next);
     done();
