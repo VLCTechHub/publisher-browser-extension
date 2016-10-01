@@ -10,6 +10,7 @@ describe('MeetupScraper', function(){
       assert.equal(result.event.description,'Description goes here');
       assert.equal(result.event.datetime,'ISO Datetime goes here');
       assert.equal(result.event.url,'some url');
+      assert.equal(result.event.hashtag,'@mytwitter');
     }, done);
   });
 
