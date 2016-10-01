@@ -31,6 +31,18 @@ var MeetupScraper = function(options) {
     return time.getAttribute('datetime');
   }
 
+  function getTwitter() {
+    var pattern = 'http://twitter.com/';
+    var links = document.querySelectorAll('a.metabox-social-icon');
+    for(var i=0; i < links.length; i++) {
+      if(links[i].href.indexOf(pattern) >= 0) {
+        return '@' +
+                links[i].href.substring(pattern.length, links[i].href.length - 1);
+      }
+    }
+    return '';
+  }
+
   return {
     scrap: function() {
       var response = { 'success': canBePublished() }
@@ -40,7 +52,8 @@ var MeetupScraper = function(options) {
         'title': getTitle(),
         'description': getDescription(),
         'datetime': getDateTime(),
-        'url': url
+        'url': url,
+        'hashtag': getTwitter()
       }
       return response;
     }
