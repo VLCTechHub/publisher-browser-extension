@@ -5,8 +5,8 @@ describe('Content', function(){
         var sender = sinon.spy();
         var sendResponse = sinon.spy();
 
-        chrome.tabs.query.yields([{'url': 'http://www.meetup.com/foo/bar'}]);
-        chrome.runtime.onMessage.trigger({fetch:true, url: 'http://www.meetup.com/foo/bar'}, sender, sendResponse);
+        chrome.tabs.query.yields([{'url': 'https://www.meetup.com/foo/bar'}]);
+        chrome.runtime.onMessage.trigger({fetch:true, url: 'https://www.meetup.com/foo/bar'}, sender, sendResponse);
 
         assert(sendResponse.calledOnce);
         var response = sendResponse.firstCall.args[0];
@@ -19,8 +19,8 @@ describe('Content', function(){
         var sender = sinon.spy();
         var sendResponse = sinon.spy();
 
-        chrome.tabs.query.yields([{'url': 'http://www.eventbrite.es/foo/bar'}]);
-        chrome.runtime.onMessage.trigger({fetch:true, url: 'http://www.eventbrite.es/foo/bar'}, sender, sendResponse);
+        chrome.tabs.query.yields([{'url': 'https://www.eventbrite.es/foo/bar'}]);
+        chrome.runtime.onMessage.trigger({fetch:true, url: 'https://www.eventbrite.es/foo/bar'}, sender, sendResponse);
 
         assert(sendResponse.calledOnce);
         var response = sendResponse.firstCall.args[0];
