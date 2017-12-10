@@ -22,12 +22,12 @@ var EventbriteScraper = function(options) {
   }
 
   function getTwitter() {
-    var pattern = 'http://twitter.com/';
+    var pattern = 'https://www.twitter.com/';
     var links = document.querySelectorAll('ul.inline-link-list a');
     for(var i=0; i < links.length; i++) {
       if(links[i].href.indexOf(pattern) >= 0) {
         return '@' +
-                links[i].href.substring(pattern.length, links[i].href.length - 1);
+                links[i].href.substring(pattern.length, links[i].href.length);
       }
     }
     return '';

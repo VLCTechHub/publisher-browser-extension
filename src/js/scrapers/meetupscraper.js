@@ -24,7 +24,7 @@ var MeetupScraper = function(options) {
   }
 
   function getDescription(){
-    return document.querySelector('.groupHome-nextMeetup .eventCard--MainContent--description').innerText;
+    return document.querySelector('.groupHome-nextMeetup .eventCard--MainContent--description').innerHTML;
   }
 
   function getDateTime() {
@@ -42,12 +42,12 @@ var MeetupScraper = function(options) {
 
 
   function getTwitter() {
-    var pattern = 'http://twitter.com/';
+    var pattern = 'http://www.twitter.com/';
     var links = document.querySelectorAll('.group-description-socialLink a');
     for(var i=0; i < links.length; i++) {
       if(links[i].href.indexOf(pattern) >= 0) {
         return '@' +
-          links[i].href.substring(pattern.length, links[i].href.length - 1);
+          links[i].href.substring(pattern.length, links[i].href.length);
       }
     }
     return '';
