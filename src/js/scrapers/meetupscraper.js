@@ -3,13 +3,15 @@ var MeetupScraper = function(options) {
   var url = options.url;
 
   function canBePublished() {
-    var isEventDetailPage = document.querySelector('#eventdets') !== null;
-    return isEventDetailPage && isFromValencia() && hasADate();
+    var isGroupDetailPage = document.querySelector('.groupPageWrapper') !== null;
+    return isGroupDetailPage && isFromValencia() && hasADate();
   }
 
   function isFromValencia(){
-    var isGroupInValencia = document.querySelector('span.locality').innerText === 'Valencia';
-    var isEventInValencia = document.querySelector('.event-where-address span:first-of-type').innerText === 'Valencia';
+    var groupCity = document.querySelector('.groupHomeHeader-groupInfo .chunk');
+    var eventCity = document.querySelector('.venueDisplay-venue-address');
+    var isGroupInValencia = !!groupCity && groupCity.innerText.indexOf('Valencia') > -1;
+    var isEventInValencia = !!eventCity && eventCity.innerText.indexOf('Valencia') > -1;
     return isGroupInValencia || isEventInValencia;
   }
 
@@ -18,26 +20,34 @@ var MeetupScraper = function(options) {
   }
 
   function getTitle(){
-    return document.querySelector('#eventdets #event-title h1').innerText;
+    return document.querySelector('.groupHome-nextMeetup .eventCardHead--title').innerText;
   }
 
   function getDescription(){
-    return document.querySelector('#eventdets #event-description-wrap').innerText;
+    return document.querySelector('.groupHome-nextMeetup .eventCard--MainContent--description').innerHTML;
   }
 
   function getDateTime() {
-    var time = document.querySelector('#eventdets #event-when-display time');
-    if(!time) { return null; }
-    return time.getAttribute('datetime');
+    var time = document.querySelector('.groupHome-nextMeetup .eventTimeDisplay time');
+    if(!time || !time.getAttribute('datetime')) { return null; }
+    var date = new Date(parseInt(time.getAttribute('datetime')));
+    var parsedDay = date.toISOString().substring(0,11);
+    var options = {
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+      timeZone: 'Europe/Madrid'
+    }
+    var parsedTime = "0" + date.toLocaleString('es-ES', options).slice(-8);
+    return parsedDay + parsedTime;
   }
 
+
   function getTwitter() {
-    var pattern = 'http://twitter.com/';
-    var links = document.querySelectorAll('a.metabox-social-icon');
+    var pattern = 'http://www.twitter.com/';
+    var links = document.querySelectorAll('.group-description-socialLink a');
     for(var i=0; i < links.length; i++) {
       if(links[i].href.indexOf(pattern) >= 0) {
         return '@' +
-                links[i].href.substring(pattern.length, links[i].href.length - 1);
+          links[i].href.substring(pattern.length, links[i].href.length);
       }
     }
     return '';

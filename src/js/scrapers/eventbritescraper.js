@@ -3,28 +3,34 @@ var EventbriteScraper = function(options) {
   var url = options.url;
 
   function canBePublished() {
-    var locality = document.querySelector('#panel_when meta[itemprop="addressLocality"]').getAttribute('content');
-    var region = document.querySelector('#panel_when meta[itemprop="addressRegion"]').getAttribute('content');
-    return (locality == 'València' || locality == 'Valencia' || region == 'Valencia');
+    var eventDetails = document.querySelectorAll('.listing-info__body .event-details .event-details__data');
+    var address = eventDetails[1].innerText;
+    return (address.indexOf('València') > -1 || address.indexOf('Valencia') > -1);
   }
 
   function getTitle(){
-    return document.querySelector('#event_header .summary').innerText;
+    return document.querySelector('.listing-hero-title').innerText;
   }
 
   function getDescription(){
-    return document.querySelector('.description').innerText;
+    return document.querySelector('.listing-info__body .has-user-generated-content').innerText;
   }
 
   function getDateTime() {
-    var time = document.querySelector('.dtstart .value-title');
-    return time.getAttribute('title');
+    var time = document.querySelector('.listing-info__body .event-details .event-details__data meta');
+    return time.getAttribute('content');
   }
 
-  function getHashTag(){
-    var twitter_link = document.querySelector('#organizer_twitter a');
-    if(twitter_link == null) return null; 
-    return '@' + twitter_link.innerText;
+  function getTwitter() {
+    var pattern = 'https://www.twitter.com/';
+    var links = document.querySelectorAll('ul.inline-link-list a');
+    for(var i=0; i < links.length; i++) {
+      if(links[i].href.indexOf(pattern) >= 0) {
+        return '@' +
+                links[i].href.substring(pattern.length, links[i].href.length);
+      }
+    }
+    return '';
   }
 
   return {
@@ -36,7 +42,7 @@ var EventbriteScraper = function(options) {
         'title': getTitle(),
         'description': getDescription(),
         'datetime': getDateTime(),
-        'hashtag': getHashTag(),
+        'hashtag': getTwitter(),
         'url': url
       }
       return response;
