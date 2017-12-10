@@ -2,11 +2,11 @@ var showExtensionRule = {
   conditions: [
     new chrome.declarativeContent.PageStateMatcher({
       pageUrl: { hostEquals: 'www.meetup.com' },
-      css: ["#eventdets"]
+      css: [".groupHome-nextMeetup"]
     }),
     new chrome.declarativeContent.PageStateMatcher({
       pageUrl: { hostEquals: 'www.eventbrite.es' },
-      css: ["#page_eventview"]
+      css: ["#event-page"]
     }),
       new chrome.declarativeContent.PageStateMatcher({
       pageUrl: { hostEquals: 'valenciarb.org' },

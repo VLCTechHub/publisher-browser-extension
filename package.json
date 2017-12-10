@@ -27,10 +27,10 @@
   },
   "homepage": "https://github.com/VLCTechHub/chrome-addon#readme",
   "devDependencies": {
-    "sinon-chrome": "^0.2.0",
-    "mocha": "^1.21.4",
-    "chai": "^1.9.2",
-    "phantomjs": "^1.9.12",
-    "sinon": "^1.11.1"
+    "sinon-chrome": "0.2.0",
+    "mocha": "1.21.4",
+    "chai": "1.9.2",
+    "phantomjs": "2.1.1",
+    "sinon": "1.11.1"
   }
 }

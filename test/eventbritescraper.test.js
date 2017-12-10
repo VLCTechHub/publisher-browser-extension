@@ -8,8 +8,8 @@ describe('EventbriteScraper', function(){
       assert.equal(result.success,true);
       assert.equal(result.event.title,'Title goes here');
       assert.equal(result.event.description,'Description. 1st parragraph.\n\nDescription. 2nd parragraph.\n\n');
-      assert.equal(result.event.datetime,'ISO Datetime goes here');
-      assert.equal(result.event.hashtag,'@handler');
+      assert.equal(result.event.datetime,'2017-12-15T18:00:00+01:00');
+      assert.equal(result.event.hashtag,'@mytwitter');
       assert.equal(result.event.url,'some url');
     }, done);
   });
@@ -17,8 +17,7 @@ describe('EventbriteScraper', function(){
   it('does not read the event if not in Valencia', function(done){
     withFixture(eventbriteFixture, function() {
       var changeLocality = function(){
-        document.querySelector('#panel_when meta[itemprop="addressLocality"]').setAttribute('content','Alicante');
-        document.querySelector('#panel_when meta[itemprop="addressRegion"]').setAttribute('content','Alicante');
+        document.querySelector('.-test-address').innerText = 'Alicante';
       }
       changeLocality();
 
