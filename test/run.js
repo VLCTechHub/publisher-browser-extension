@@ -11,7 +11,7 @@ phantom.injectJs(node_modules + 'sinon-chrome/src/phantom-tweaks.js');
 phantom.injectJs(node_modules + 'chai/chai.js');
 phantom.injectJs(node_modules + 'sinon/pkg/sinon.js');
 
-mocha.setup({ui: 'bdd', reporter: 'spec'});
+mocha.setup({ui: 'bdd', reporter: 'spec', useColors: true});
 phantom.injectJs('beforeeach.js');
 phantom.injectJs('meetupscraper.test.js');
 phantom.injectJs('eventbritescraper.test.js');
