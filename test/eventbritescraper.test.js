@@ -7,7 +7,8 @@ describe('EventbriteScraper', function(){
 
       assert.equal(result.success,true);
       assert.equal(result.event.title,'Title goes here');
-      assert.equal(result.event.description,'Description. 1st parragraph.\n\nDescription. 2nd parragraph.\n\n');
+      assert.include(result.event.description, 'Description. 1st parragraph.');
+      assert.include(result.event.description, 'Description. 2nd parragraph.');
       assert.equal(result.event.datetime,'2017-12-15T18:00:00+01:00');
       assert.equal(result.event.hashtag,'@mytwitter');
       assert.equal(result.event.url,'some url');
