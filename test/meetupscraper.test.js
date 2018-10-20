@@ -8,8 +8,7 @@ describe('MeetupScraper', function(){
       assert.equal(result.success,true);
       assert.equal(result.event.title,'Title goes here');
       assert.equal(result.event.description,'Description goes here');
-      //cannot be tested in phantomjs :(
-      //assert.equal(result.event.datetime,'2017-12-12T08:00:00');
+      assert.equal(result.event.datetime,'2018-10-19T10:30:00');
       assert.equal(result.event.url,'some url');
       assert.equal(result.event.hashtag,'@mytwitter');
     }, done);

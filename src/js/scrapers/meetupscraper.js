@@ -30,16 +30,17 @@ var MeetupScraper = function(options) {
   function getDateTime() {
     var time = document.querySelector('.groupHome-nextMeetup .eventTimeDisplay time');
     if(!time || !time.getAttribute('datetime')) { return null; }
+
     var date = new Date(parseInt(time.getAttribute('datetime')));
     var parsedDay = date.toISOString().substring(0,11);
     var options = {
       hour: 'numeric', minute: 'numeric', second: 'numeric',
       timeZone: 'Europe/Madrid'
     }
-    var parsedTime = "0" + date.toLocaleString('es-ES', options).slice(-8);
+
+    var parsedTime = ("0" + date.toLocaleString('es-ES', options)).slice(-8);//0 does not affects 10,11,12 since we always slice 8
     return parsedDay + parsedTime;
   }
-
 
   function getTwitter() {
     var pattern = 'http://www.twitter.com/';
