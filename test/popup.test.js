@@ -1,6 +1,6 @@
 describe('EventFiller', function(){
   it('fills the form with the event details', function(done){
-    withPopupFixture(function() {
+    withFixture(popupFixture, function() {
       var an_event = {
         title:'a title',
         description:'a description',
@@ -19,7 +19,7 @@ describe('EventFiller', function(){
   });
 
   it('displays a not found event message', function(done){
-    withPopupFixture(function(){
+    withFixture(popupFixture, function(){
       var filler = new EventFiller();
       filler.showNotFoundEventMessage();
 
@@ -30,7 +30,7 @@ describe('EventFiller', function(){
 
 describe('EventPublisher', function(){
   it('sends the event to vlctechhub api', function(done){
-    withPopupFixture(function(){
+    withFixture(popupFixture, function(){
      //show event in dom
       document.querySelector('#title').value = 'a title';
       document.querySelector('#description').value = 'a description';
@@ -79,15 +79,3 @@ describe('EventPublisher', function(){
     }, done);
   });
 })
-
-
-var withPopupFixture = function(next, done){
-  var FILENAME = 'test/fixtures/popup.html';
-  page.open(FILENAME, function() {
-    page.injectJs('js/vendor/moment.min.js');
-    page.injectJs('js/vendor/moment-timezone-with-data.min.js');
-    page.injectJs('src/js/popup.js');
-    page.evaluate(next);
-    done();
-  });
-}
