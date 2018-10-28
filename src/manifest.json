@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "VLCTechHub Publisher Addon",
   "description": "Publish events in VLCTechHub directly from Chrome",
-  "version": "3.0",
+  "version": "3.1",
 
   "background" : {
      "scripts": ["js/background.js"],
