@@ -26,6 +26,7 @@
     {
       "matches": ["https://www.meetup.com/*",
                   "http://valenciarb.org/",
+                  "https://www.eventbrite.com/e/*",
                   "https://www.eventbrite.es/e/*"],
 
       "js": [ "js/scrapers/meetupscraper.js",
