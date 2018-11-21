@@ -16,8 +16,9 @@ Events must have a future date and be held in Valencia region.
 You can install the [official version](https://chrome.google.com/webstore/detail/vlctechhub-publisher-addo/jmphppchcbgfglglfbemgbjligclmcmc).
 
 To install the dev version:
- - `git clone https://github.com/VLCTechHub/chrome-addon.git`
- - `cd chrome-addon`
+ - `git clone https://github.com/VLCTechHub/publisher-browser-extension
+.git`
+ - `cd publisher-browser-extension`
  - `npm install`
  - Open `chrome://extensions/` with Chrome
  - Ensure that the "Developer mode" checkbox in the top right-hand corner is checked
@@ -28,8 +29,9 @@ To install the dev version:
 ### Firefox
 
 To install the dev version:
- - `git clone https://github.com/VLCTechHub/chrome-addon.git`
- - `cd chrome-addon`
+ - `git clone https://github.com/VLCTechHub/publisher-browser-extension
+.git`
+ - `cd publisher-browser-extension`
  - `npm install`
  - open Firefox
  - enter "about:debugging" in the URL bar
