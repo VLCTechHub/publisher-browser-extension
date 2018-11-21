@@ -1,6 +1,6 @@
-# VLCTechHub Chrome Extension
+# VLCTechHub Browser Extension
 
-VLCTechHub Chrome extension to publish events in VLCTechHub with details read from the site you are visiting.
+VLCTechHub Browser extension to publish events in VLCTechHub with details read from the site you are visiting.
 
 Sites supported:
  - Event detail page from [www.meetup.com](https://www.meetup.com/)
@@ -10,6 +10,8 @@ Sites supported:
 Events must have a future date and be held in Valencia region.
 
 ## How to use it
+
+### Chrome
 
 You can install the [official version](https://chrome.google.com/webstore/detail/vlctechhub-publisher-addo/jmphppchcbgfglglfbemgbjligclmcmc).
 
@@ -22,6 +24,21 @@ To install the dev version:
  - Click "LOAD UNPACKED" and select `src` folder from this repo
  - Visit a meetup event page with a future event in Valencia
 
+
+### Firefox
+
+To install the dev version:
+ - `git clone https://github.com/VLCTechHub/chrome-addon.git`
+ - `cd chrome-addon`
+ - `npm install`
+ - open Firefox
+ - enter "about:debugging" in the URL bar
+ - check the box labelled "Enable add-on debugging"
+ - click the button labelled "Load Temporary Add-on"
+ - select the file manifest.json in the src folder
+ - visit a meetup event page with a future event in Valencia
+
+## tests
 
 To run the test run `npm test` on the project folder.
 
