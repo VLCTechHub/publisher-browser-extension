@@ -1,6 +1,6 @@
 
 var notifyEnableAddon = function(){
-  var meetupPage = '.groupHome-nextMeetup';
+  var meetupPage = '.groupHome-eventsList-upcomingEvents';
   var eventbritePage = '#event-page';
   var valenciarbPage = '.eyelet';
   var els = Array.from(document.querySelectorAll(meetupPage)) +

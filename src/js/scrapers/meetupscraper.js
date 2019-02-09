@@ -20,15 +20,15 @@ var MeetupScraper = function(options) {
   }
 
   function getTitle(){
-    return document.querySelector('.groupHome-nextMeetup .eventCardHead--title').innerText;
+    return document.querySelector('.groupHome-eventsList-upcomingEvents .eventCardHead--title').innerText;
   }
 
   function getDescription(){
-    return document.querySelector('.groupHome-nextMeetup .eventCard--MainContent--description').innerHTML;
+    return document.querySelector('.groupHome-eventsList-upcomingEvents .eventCard--MainContent--description').innerHTML;
   }
 
   function getDateTime() {
-    var time = document.querySelector('.groupHome-nextMeetup .eventTimeDisplay time');
+    var time = document.querySelector('.groupHome-eventsList-upcomingEvents .eventTimeDisplay time');
     if(!time || !time.getAttribute('datetime')) { return null; }
 
     var date = new Date(parseInt(time.getAttribute('datetime')));

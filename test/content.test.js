@@ -14,7 +14,7 @@ describe('Content', function(){
       }, done);
     });
 
-    it('scraps the eventbrite page', function(done){
+    xit('scraps the eventbrite page', function(done){
       withFixture(eventbriteFixture, function(){
         var sender = sinon.spy();
         var sendResponse = sinon.spy();
