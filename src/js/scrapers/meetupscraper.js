@@ -4,15 +4,7 @@ var MeetupScraper = function(options) {
 
   function canBePublished() {
     var isGroupDetailPage = document.querySelector('.groupPageWrapper') !== null;
-    return isGroupDetailPage && isFromValencia() && hasADate();
-  }
-
-  function isFromValencia(){
-    var groupCity = document.querySelector('.groupHomeHeader-groupInfo .chunk');
-    var eventCity = document.querySelector('.venueDisplay-venue-address');
-    var isGroupInValencia = !!groupCity && groupCity.innerText.indexOf('Valencia') > -1;
-    var isEventInValencia = !!eventCity && eventCity.innerText.indexOf('Valencia') > -1;
-    return isGroupInValencia || isEventInValencia;
+    return isGroupDetailPage && hasADate();
   }
 
   function hasADate(){

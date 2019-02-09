@@ -14,21 +14,6 @@ describe('MeetupScraper', function(){
     }, done);
   });
 
-  it('does not read the event if not in Valencia', function(done){
-    withFixture(meetupFixture, function() {
-      var changeLocality = function(){
-        document.querySelector('.groupHomeHeader-groupInfo .chunk').innerText = 'Alicante';
-      }
-      changeLocality();
-
-      var scrapper = new MeetupScraper();
-      var result = scrapper.scrap();
-
-      assert.equal(result.success,false);
-      assert.equal(result.event, undefined);
-    }, done);
-  });
-
   it('does not read the event if it does not have a date', function(done){
     withFixture(meetupFixture, function() {
       var removeDate = function(){
