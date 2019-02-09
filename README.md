@@ -1,5 +1,7 @@
 # VLCTechHub Browser Extension
 
+[![Build Status](https://travis-ci.org/VLCTechHub/chrome-addon.svg?branch=master)](https://travis-ci.org/VLCTechHub/publisher-browser-extension)
+
 VLCTechHub Browser extension to publish events in VLCTechHub with details read from the site you are visiting.
 
 Sites supported:
@@ -46,4 +48,3 @@ To run the test run `npm test` on the project folder.
 
 --
 
-[![Build Status](https://travis-ci.org/VLCTechHub/chrome-addon.svg?branch=master)](https://travis-ci.org/VLCTechHub/chrome-addon)
