@@ -24,7 +24,13 @@ var MeetupScraper = function(options) {
   }
 
   function getDescription(){
-    return document.querySelector('.groupHome-eventsList-upcomingEvents .eventCard--MainContent--description').innerHTML;
+    let els = document.querySelectorAll('.groupHome-eventsList-upcomingEvents .eventCard div > div > div > p');
+    let description = '';
+    els.forEach(el => {
+      let text = el.innerText.trim();
+      if(text) { description = description + text; }
+    });
+    return description;
   }
 
   function getDateTime() {
